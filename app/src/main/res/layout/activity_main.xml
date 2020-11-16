@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.cai.stu.hiltdemo.vm.MainViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.MainActivity">
+
+        <Button
+            android:id="@+id/sendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> viewModel.loadWeather() }"
+            android:text="@string/getData" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"更新时间："+(viewModel.isLoadWeather?viewModel.weather.now.obsTime:"暂无数据")}'
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"今日天气："+(viewModel.isLoadWeather()?viewModel.weather.now.text:"暂无数据")}'
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"当前气温："+(viewModel.isLoadWeather()?String.valueOf(viewModel.weather.now.temp)+"℃":"暂无数据")}'
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"风向："+(viewModel.isLoadWeather()?viewModel.weather.now.windDir:"暂无数据")}'
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"风速："+(viewModel.isLoadWeather()?String.valueOf(viewModel.weather.now.windSpeed)+"m/s":"暂无数据")}'
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</layout>

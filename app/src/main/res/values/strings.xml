@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HiltDemo</string>
+    <string name="getData">获取数据</string>
+</resources>
