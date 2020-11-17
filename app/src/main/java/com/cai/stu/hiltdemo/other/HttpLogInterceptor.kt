@@ -1,4 +1,4 @@
-package com.cai.stu.hiltdemo.dl
+package com.cai.stu.hiltdemo.other
 
 import android.util.Log
 import okhttp3.Interceptor
