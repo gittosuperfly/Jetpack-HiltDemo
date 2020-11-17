@@ -17,19 +17,18 @@ import javax.inject.Singleton
 object LoggerModule {
     @Provides
     @Singleton
-    fun provideAppDatabase(context: Application): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "logger.db")
+    fun provideAppDatabase(context: Application): AppDatabase {
+        return Room.databaseBuilder(context, AppDatabase::class.java, "logger.db")
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()
             .build()
-
+    }
 
     @Provides
     @Singleton
     fun provideLoggerDao(appDatabase: AppDatabase): LoggerDao = appDatabase.getLoggerDao()
 
-
-    @Database(entities = [Logger::class], version = 1)
+    @Database(entities = [Logger::class], version = 1, exportSchema = false)
     abstract class AppDatabase : RoomDatabase() {
         abstract fun getLoggerDao(): LoggerDao
     }

@@ -19,22 +19,24 @@ object WeatherModule {
     fun provideWebService(retrofit: Retrofit): WebService = retrofit.create(WebService::class.java)
 
     @Provides
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(HttpLogInterceptor())
-        .retryOnConnectionFailure(true)
-        .connectTimeout(5, TimeUnit.SECONDS)
-        .readTimeout(5, TimeUnit.SECONDS)
-        .build()
-
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HttpLogInterceptor())
+            .retryOnConnectionFailure(true)
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            .build()
+    }
 
     @Singleton
     @Provides
-    fun provideRetrofit(httpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(URL)
-        .client(httpClient)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
+    fun provideRetrofit(httpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(URL)
+            .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
     private const val URL = "https://devapi.qweather.com/"
 }

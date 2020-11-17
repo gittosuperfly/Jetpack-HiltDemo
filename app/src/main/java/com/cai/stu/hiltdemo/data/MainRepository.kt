@@ -12,6 +12,6 @@ class MainRepository @Inject constructor(
 ) {
     suspend fun getNowWeather(location: String, key: String) = service.getNowWeather(location, key)
     suspend fun insertLogger(message: String) = dao.insert(Logger(message))
-    suspend fun queryAllLogger() = dao.queryAll()
+    suspend fun queryLogger() = dao.queryAll()
 }
 
